@@ -20,4 +20,3 @@ void MT_WriteOneByte(uint8_t _reg_addr, uint8_t _payload);
 * [Даташит MT6701](http://www.magntek.com.cn/upload/MT6701_Rev.1.5.pdf)
 * [Страница MT6701](http://www.magntek.com.cn/en/list/177/559.htm)
 * [Корпус для тестов](https://github.com/S-LABc/AMS-AS5600-Arduino-Library/tree/main/addons/AS5600-Case-STL)
-* [Видео с моим мнением](https://youtu.be/GnFONlue2t0)
