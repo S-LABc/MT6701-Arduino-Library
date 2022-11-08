@@ -14,6 +14,7 @@ uint8_t MT_RequestSingleRegister(uint8_t _reg_addr);
 // Запись нового содержимого в регистр
 void MT_WriteOneByte(uint8_t _reg_addr, uint8_t _payload);
 ```
+* Использовать методы описанные выше седует через наследование класса MT6701I2C
 * Все доступные методы, константы, типы данных можно посмотреть [тут](https://github.com/S-LABc/MT6701-Arduino-Library/blob/main/src/MT6701_I2C.h)
 
 ## Ссылки

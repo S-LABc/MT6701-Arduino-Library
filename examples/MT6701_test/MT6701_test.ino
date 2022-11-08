@@ -13,37 +13,42 @@
  ** GitHub - https://github.com/S-LABc
  ** Gmail - romansklyar15@gmail.com
  * 
- * Copyright (C) 2022. v1.0 / Скляр Роман S-LAB
+ * Copyright (C) 2022. v1.1 / Скляр Роман S-LAB
  */
  
 #include <MT6701_I2C.h>
 
-// раскомментировать для заупска функции сохранения значений
+// Раскомментировать для заупска функции сохранения значений
 //#define SAVE_VALUES
 
-/*
- * STM32_MT6701_MODE_PIN   PC13
- * ESP32_MT6701_MODE_PIN   2
- * ARDUINO_MT6701_MODE_PIN 3
- * или любой другой
- * 
- * MT6701I2C_MODE_I2C_SSI - притягивает контакт MODE к VCC
- * MT6701I2C_MODE_UVW_ABZ - притягивает контакт MODE к GND
- */
 MT6701I2C SensorI2C(&Wire);
-//MT6701I2C SensorI2C(&Wire, ARDUINO_MT6701_MODE_PIN, MT6701I2C_MODE_I2C_SSI);
  
 void setup() {
   Serial.begin(115200);
   
+  // Запускаем соединение
   SensorI2C.begin();
+  // Настраиваем шину I2C на 400кГц
+  SensorI2C.setClock();
+  //Можно на друие частоты, но работает не на всех микроконтроллерах
+  //SensorI2C.setClock(MT6701_I2C_CLOCK_100KHZ); // 100кГц
+  //SensorI2C.setClock(MT6701_I2C_CLOCK_1MHZ); // 1МГц
+  //SensorI2C.setClock(725000); // Пользовательское значение 725кГц
+
+  /*
+   * Если нужно управлять режимами датчика
+   * STM32_MT6701_MODE_PIN   PC13
+   * ESP8266_MT6701_MODE_PIN 2
+   * ESP32_MT6701_MODE_PIN   4
+   * ARDUINO_MT6701_MODE_PIN 3
+   * или любой другой GPIO
+   */
+  //SensorI2C.attachModePin(ARDUINO_MT6701_MODE_PIN); // SensorI2C.detachModePin();
+  //SensorI2C.enableI2CorSSI(); // Включить интерфейс I2C/SSI
+  //SensorI2C.enableUVWorABZ(); // Включить интерфейс UVW/ABZ
+   
   
-  //SensorI2C.setClock100kHz();
-  SensorI2C.setClock400kHz();
-  //SensorI2C.setClock1MHz();
-  //SensorI2C.setClock(200000); // другое значение частоты
-  
-  while(!Serial) {}
+  while(!Serial);
 
   while(!SensorI2C.isConnected()) {
     Serial.println("Датчик не обнаружен");
@@ -133,5 +138,5 @@ void saveNewSettings() {
   delay(700); // >600мс
   Serial.println("Saved Successfully. Reconnect Power");
   
-  while(1) {}
+  while(1);
 }

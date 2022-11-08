@@ -11,7 +11,7 @@
  ** GitHub - https://github.com/S-LABc
  ** Gmail - romansklyar15@gmail.com
  * 
- * Copyright (C) 2022. v1.0 / License MIT / Скляр Роман S-LAB
+ * Copyright (C) 2022. v1.1 / License MIT / Скляр Роман S-LAB
  */
 
 #pragma once
@@ -19,66 +19,67 @@
 #include "Wire.h"
 
 /*=== Настройки шины I2C датчика ===*/
-#define MT6701_I2C_CLOCK_100KHZ 100000UL
-#define MT6701_I2C_CLOCK_400KHZ 400000UL
-#define MT6701_I2C_CLOCK_1MHZ   1000000UL
-#define MT6701_I2C_ADDRESS      0x06
+const uint32_t MT6701_I2C_CLOCK_100KHZ = 100000;
+const uint32_t MT6701_I2C_CLOCK_400KHZ = 400000;
+const uint32_t MT6701_I2C_CLOCK_1MHZ   = 1000000;
+const uint8_t MT6701_I2C_ADDRESS = 0x06;
 
 /*=== Выводы MODE на разных платах (зависит от ядра) ===*/
 #define STM32_MT6701_MODE_PIN   PC13
-#define ESP32_MT6701_MODE_PIN   2
+#define ESP8266_MT6701_MODE_PIN 2
+#define ESP32_MT6701_MODE_PIN   4
 #define ARDUINO_MT6701_MODE_PIN 3
 
 /*=== Адреса регистров датчика ===*/
 // Angle Data Register
-#define MT6701_I2C_ANGLE_DATA_REG_H 0x03
-#define MT6701_I2C_ANGLE_DATA_REG_L 0x04
+const uint8_t MT6701_I2C_ANGLE_DATA_REG_H = 0x03;
+const uint8_t MT6701_I2C_ANGLE_DATA_REG_L = 0x04;
 // UVW_MUX только для корпуса QFN
-#define MT6701_I2C_EEPROM_UVW_MUX_REG 0x25
-#define MT6701_I2C_EEPROM_UVW_MUX_BIT 7
+const uint8_t MT6701_I2C_EEPROM_UVW_MUX_REG = 0x25;
+const uint8_t MT6701_I2C_EEPROM_UVW_MUX_BIT = 7;
 // ABZ_MUX
-#define MT6701_I2C_EEPROM_ABZ_MUX_REG 0x29
-#define MT6701_I2C_EEPROM_ABZ_MUX_BIT 6
+const uint8_t MT6701_I2C_EEPROM_ABZ_MUX_REG = 0x29;
+const uint8_t MT6701_I2C_EEPROM_ABZ_MUX_BIT = 6;
 // DIR
-#define MT6701_I2C_EEPROM_DIR_REG 0x29
-#define MT6701_I2C_EEPROM_DIR_BIT 1
+const uint8_t MT6701_I2C_EEPROM_DIR_REG = 0x29;
+const uint8_t MT6701_I2C_EEPROM_DIR_BIT = 1;
 // UVW_RES
-#define MT6701_I2C_EEPROM_UVW_RES_REG   0x30
-#define MT6701_I2C_EEPROM_UVW_MUX_BIT_S 4
+const uint8_t MT6701_I2C_EEPROM_UVW_RES_REG   = 0x30;
+const uint8_t MT6701_I2C_EEPROM_UVW_MUX_BIT_S = 4;
 // ABZ_RES
-#define MT6701_I2C_EEPROM_ABZ_RES_REG_H 0x30
-#define MT6701_I2C_EEPROM_ABZ_RES_REG_L 0x31
-#define MT6701_I2C_EEPROM_ABZ_MUX_BIT_S 0
+const uint8_t MT6701_I2C_EEPROM_ABZ_RES_REG_H = 0x30;
+const uint8_t MT6701_I2C_EEPROM_ABZ_RES_REG_L = 0x31;
+const uint8_t MT6701_I2C_EEPROM_ABZ_MUX_BIT_S = 0;
 // HYST
-#define MT6701_I2C_EEPROM_HYST_REG_H 0x32
-#define MT6701_I2C_EEPROM_HYST_REG_L 0x34
+const uint8_t MT6701_I2C_EEPROM_HYST_REG_H = 0x32;
+const uint8_t MT6701_I2C_EEPROM_HYST_REG_L = 0x34;
 // Z_PULSE_WIDTH
-#define MT6701_I2C_EEPROM_Z_PULSE_WIDTH_REG   0x32
-#define MT6701_I2C_EEPROM_Z_PULSE_WIDTH_BIT_S 4
+const uint8_t MT6701_I2C_EEPROM_Z_PULSE_WIDTH_REG   = 0x32;
+const uint8_t MT6701_I2C_EEPROM_Z_PULSE_WIDTH_BIT_S = 4;
 // ZERO
-#define MT6701_I2C_EEPROM_ZERO_REG_H 0x32
-#define MT6701_I2C_EEPROM_ZERO_REG_L 0x33
+const uint8_t MT6701_I2C_EEPROM_ZERO_REG_H = 0x32;
+const uint8_t MT6701_I2C_EEPROM_ZERO_REG_L = 0x33;
 // PWM_FREQ
-#define MT6701_I2C_EEPROM_PWM_FREQ_REG 0x38
-#define MT6701_I2C_EEPROM_PWM_FREQ_BIT 7
+const uint8_t MT6701_I2C_EEPROM_PWM_FREQ_REG = 0x38;
+const uint8_t MT6701_I2C_EEPROM_PWM_FREQ_BIT = 7;
 // PWM_POL
-#define MT6701_I2C_EEPROM_PWM_POL_REG 0x38
-#define MT6701_I2C_EEPROM_PWM_POL_BIT 6
+const uint8_t MT6701_I2C_EEPROM_PWM_POL_REG = 0x38;
+const uint8_t MT6701_I2C_EEPROM_PWM_POL_BIT = 6;
 // OUT_MODE
-#define MT6701_I2C_EEPROM_OUT_MODE_REG 0x38
-#define MT6701_I2C_EEPROM_OUT_MODE_BIT 5
+const uint8_t MT6701_I2C_EEPROM_OUT_MODE_REG = 0x38;
+const uint8_t MT6701_I2C_EEPROM_OUT_MODE_BIT = 5;
 // A_START
-#define MT6701_I2C_EEPROM_A_START_REG_H 0x3E
-#define MT6701_I2C_EEPROM_A_START_REG_L 0x3F
+const uint8_t MT6701_I2C_EEPROM_A_START_REG_H = 0x3E;
+const uint8_t MT6701_I2C_EEPROM_A_START_REG_L = 0x3F;
 // A_STOP
-#define MT6701_I2C_EEPROM_A_STOP_REG_H 0x3E
-#define MT6701_I2C_EEPROM_A_STOP_REG_L 0x40
-#define MT6701_I2C_EEPROM_A_STOP_BIT_S 4
+const uint8_t MT6701_I2C_EEPROM_A_STOP_REG_H = 0x3E;
+const uint8_t MT6701_I2C_EEPROM_A_STOP_REG_L = 0x40;
+const uint8_t MT6701_I2C_EEPROM_A_STOP_BIT_S = 4;
 // 7.2 EEPROM Programming
-#define MT6701_I2C_EEPROM_PROG_KEY_REG   0x09
-#define MT6701_I2C_EEPROM_PROG_KEY_VALUE 0xB3
-#define MT6701_I2C_EEPROM_PROG_CMD_REG   0x0A
-#define MT6701_I2C_EEPROM_PROG_CMD_VALUE 0x05
+const uint8_t MT6701_I2C_EEPROM_PROG_KEY_REG   = 0x09;
+const uint8_t MT6701_I2C_EEPROM_PROG_KEY_VALUE = 0xB3;
+const uint8_t MT6701_I2C_EEPROM_PROG_CMD_REG   = 0x0A;
+const uint8_t MT6701_I2C_EEPROM_PROG_CMD_VALUE = 0x05;
 
 /*=== Вспомогательные значения ===*/
 // Тип конфигурации выходного интерфейса (только для корпуса QFN)
@@ -123,35 +124,40 @@ enum MT6701I2COutputMode {
   MT6701I2_OUTPUT_MODE_PWM,
 };
 // Ответы стандартного вида успех/ошибка
-#define MT6701I2C_DEFAULT_REPORT_ERROR false
-#define MT6701I2C_DEFAULT_REPORT_OK    true
+const uint8_t MT6701I2C_DEFAULT_REPORT_ERROR = 0;
+const uint8_t MT6701I2C_DEFAULT_REPORT_OK    = 1;
 // Выбор интерфейсов датчика
-#define MT6701I2C_MODE_I2C_SSI HIGH
-#define MT6701I2C_MODE_UVW_ABZ LOW
+const uint8_t MT6701I2C_MODE_I2C_SSI = 0;
+const uint8_t MT6701I2C_MODE_UVW_ABZ = 1;
 
 
 class MT6701I2C {
   private:
-    TwoWire *_wire; // Объект для использования методов I2C
-    int8_t _pin_mode = -1; // Контакт микроконтроллера к которому подключен вывод MODE датчика
+    TwoWire* _wire_; // Объект для использования методов I2C
+    int8_t _pin_mode_ = -1; // Контакт микроконтроллера к которому подключен вывод MODE датчика
 
-  public:
-    MT6701I2C(TwoWire *twi); // Конструктор с использованием только интерфейса I2C
-    MT6701I2C(TwoWire *twi, int8_t pinmode, bool state = MT6701I2C_MODE_I2C_SSI); // Конструктор с использованием интерфейса I2C, контакта MODE, режима интерфейса
-
+  protected:
     uint8_t MT_RequestSingleRegister(uint8_t _reg_addr); // Запрос значения регистра размером 1 байт
     void MT_WriteOneByte(uint8_t _reg_addr, uint8_t _payload); // Запись одного байта в однобайтовый регистр
 
-    void begin(void); // Вызов Wire.begin()
-    void setClock(uint32_t _clock); // Настройка произвольной частоты
-    void setClock100kHz(void); // Настройка частоты на 100кГц
-    void setClock400kHz(void); // Настройка частоты на 400кГц
-    void setClock1MHz(void); // Настройка частоты на 1МГц
-    void end(void); // Вызов Wire.end()
+  public:
+    MT6701I2C(TwoWire* _twi); // Конструктор с использованием только интерфейса I2C
 
-    void saveNewValues(void); // Метод производителя для сохранения значений в памяти EEPROM. Напряжение питания от 4.5В до 5.5В
+    void begin(void); // Вызов Wire.begin()
+#if defined(ESP8266) || defined(ESP32)
+    void begin(int8_t _sda_pin, int8_t _scl_pin); // Вызов Wire.begin(SDA, SCL) с указанием выводов
+#endif
+    void setClock(uint32_t _clock = MT6701_I2C_CLOCK_400KHZ); // Настройка частоты на 100кГц, 400кГц, 1МГц, или пользовательское значение (по умолчанию 400кГц)
+#if !defined(ESP8266)
+    void end(void); // Вызов Wire.end()
+#endif
+
+    void saveNewValues(void); // Метод производителя для сохранения значений в памяти EEPROM. Рекомендуется выполнять при напряжение питания от 4.5В до 5.5В
 
     bool isConnected(void); // Проверка по стандартному алгоритму поиска устройств на линии I2C
+
+    void attachModePin(byte _pin_mode); // Назначить контакт микроконтроллера для управления режимом интерфейса
+    void detachModePin(void); // Освоободить назначенный контакт микроконтроллера для управления режимом интерфейса
 
     void enableI2CorSSI(void); // Включить интерфейс I2C/SSI. MT6701I2C_MODE_I2C_SSI
     void enableUVWorABZ(void); // Включить интерфейс UVW/ABZ. MT6701I2C_MODE_UVW_ABZ
@@ -203,7 +209,7 @@ class MT6701I2C {
     void setZPulseWidth180DEG(void); // Установить ширину импульса 180 градсуов
     bool setZPulseWidth180DEGVerify(void); // То же самое, но с подтверждением
 
-    word getZeroDegreePositionData(void); // Получить значение нулевого положения. Смотреть таблицу в документации
+    word getZeroDegreePositionData(void); // Получить значение нулевого положения. Смотреть таблицу в документации стр 28. 0x000 - 0xFFF
     void setZeroDegreePositionData(word _zero_position_data); // Установить значение нулевого положения. Смотреть таблицу в документации
     bool setZeroDegreePositionDataVerify(word _zero_position_data); // То же самое, но с подтверждением
 
