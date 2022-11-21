@@ -11,7 +11,7 @@
  ** GitHub - https://github.com/S-LABc
  ** Gmail - romansklyar15@gmail.com
  * 
- * Copyright (C) 2022. v1.1 / License MIT / Скляр Роман S-LAB
+ * Copyright (C) 2022. v1.2 / License MIT / Скляр Роман S-LAB
  */
 
 #include "MT6701_I2C.h"
@@ -92,14 +92,6 @@ void MT6701I2C::begin(int8_t _sda_pin, int8_t _scl_pin) {
 void MT6701I2C::setClock(uint32_t _clock) {
   _wire_->setClock(_clock);
 }
-/* 
- * @brief: отключение шины I2C
- */
-#if !defined(ESP8266)
-void MT6701I2C::end(void) {
-  _wire_->end();
-}
-#endif
 /*
  * @brief: сохраняет данные в EEPROM памяти датчика
  * @note: назначение каждой команды не описано в документации, порядок команд описан в 7.2 EEPROM Programming

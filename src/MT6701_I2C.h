@@ -11,7 +11,7 @@
  ** GitHub - https://github.com/S-LABc
  ** Gmail - romansklyar15@gmail.com
  * 
- * Copyright (C) 2022. v1.1 / License MIT / Скляр Роман S-LAB
+ * Copyright (C) 2022. v1.2 / License MIT / Скляр Роман S-LAB
  */
 
 #pragma once
@@ -148,9 +148,6 @@ class MT6701I2C {
     void begin(int8_t _sda_pin, int8_t _scl_pin); // Вызов Wire.begin(SDA, SCL) с указанием выводов
 #endif
     void setClock(uint32_t _clock = MT6701_I2C_CLOCK_400KHZ); // Настройка частоты на 100кГц, 400кГц, 1МГц, или пользовательское значение (по умолчанию 400кГц)
-#if !defined(ESP8266)
-    void end(void); // Вызов Wire.end()
-#endif
 
     void saveNewValues(void); // Метод производителя для сохранения значений в памяти EEPROM. Рекомендуется выполнять при напряжение питания от 4.5В до 5.5В
 
