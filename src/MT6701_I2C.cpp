@@ -85,6 +85,14 @@ void MT6701I2C::begin(int8_t _sda_pin, int8_t _scl_pin) {
   _wire_->begin(_sda_pin, _scl_pin);
 }
 #endif
+
+#if defined(ARDUINO_ARCH_STM32)
+void MT6701I2C::begin(int8_t _sda_pin, int8_t _scl_pin) {
+  _wire_->setSDA(_sda_pin);
+  _wire_->setSCL(_scl_pin);
+  _wire_->begin();
+}
+#endif
 /* 
  * @brief: настройка произвольной частоты шины I2C (по умолчанию 400кГц)
  * @note: использовать, если частота шины меняется из-за разных устройств
