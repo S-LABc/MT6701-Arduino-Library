@@ -144,7 +144,7 @@ class MT6701I2C {
     MT6701I2C(TwoWire* _twi); // Конструктор с использованием только интерфейса I2C
 
     void begin(void); // Вызов Wire.begin()
-#if defined(ESP8266) || defined(ESP32)
+#if defined(ESP8266) || defined(ESP32) || defined(ARDUINO_ARCH_STM32)
     void begin(int8_t _sda_pin, int8_t _scl_pin); // Вызов Wire.begin(SDA, SCL) с указанием выводов
 #endif
     void setClock(uint32_t _clock = MT6701_I2C_CLOCK_400KHZ); // Настройка частоты на 100кГц, 400кГц, 1МГц, или пользовательское значение (по умолчанию 400кГц)
