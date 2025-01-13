@@ -376,6 +376,7 @@ word MT6701I2C::getOutputResolutionABZ(void) {
 void MT6701I2C::setOutputResolutionABZ(word _resolution) {
   uint8_t reg_l = (_resolution - 1) & 0xFF;
   uint8_t reg_h = MT_RequestSingleRegister(MT6701_I2C_EEPROM_ABZ_RES_REG_H);
+  reg_h &= ~0x03; // исправление от dRon
   reg_h |= ((_resolution - 1) >> 8) & 0x03;
   MT_WriteOneByte(MT6701_I2C_EEPROM_ABZ_RES_REG_H, reg_h);
   MT_WriteOneByte(MT6701_I2C_EEPROM_ABZ_RES_REG_L, reg_l);
